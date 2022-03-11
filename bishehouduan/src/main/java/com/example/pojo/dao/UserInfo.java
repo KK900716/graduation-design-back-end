@@ -1,4 +1,4 @@
-package com.example.pojo;
+package com.example.pojo.dao;
 
 import lombok.*;
 

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public class JwtUtil {
-    private static final String signature="admin-user-shzu";
+    private static final String signature="admin-user-txsb";
     private static final int time=24*3600*1000;
 
     public static String createToken(String userAccount,String password){
@@ -47,5 +47,10 @@ public class JwtUtil {
         Jws<Claims> claimsJws = jwtParser.setSigningKey(signature).parseClaimsJws(token);
         Claims claims=claimsJws.getBody();
         return claims.get("password").toString();
+    }
+    public static String preCheckJwt(String token){
+        if (!JwtUtil.checkToken(token))
+            return null;
+        return JwtUtil.getTokenUserAccount(token);
     }
 }
