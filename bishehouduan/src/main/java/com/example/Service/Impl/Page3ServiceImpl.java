@@ -28,4 +28,5 @@ public class Page3ServiceImpl implements Page3Service {
         }
         return 1==page3Mapper.deleteWareHouseUserInfo(new DeleteWareHouseUserInfoDomain(account,page3Mapper.selectAvailable(account)+1)) && 1==page3Mapper.deleteWareHouseUserWareHouse(page3Delete);
     }
+
 }
