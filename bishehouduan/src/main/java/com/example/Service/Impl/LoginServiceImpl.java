@@ -26,7 +26,11 @@ public class LoginServiceImpl implements LoginService {
         String checkCode = redisTemplate.opsForValue().get(userData.getUid());
         if (!userData.getVerificationCode().equals(checkCode))
             return false;
-        return loginMapper.selectUserLogin(userData.getUserAccount()).equals(userData.getUserPassword());
+        try {
+            return loginMapper.selectUserLogin(userData.getUserAccount()).equals(userData.getUserPassword());
+        } catch (Exception e) {
+            return false;
+        }
     }
     /**
      * uuid和checkCode存入redis

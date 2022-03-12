@@ -7,12 +7,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInfo {
-    private int id;
+public class Page2InsertDomain {
     private String account;
-    private String password;
-    private String name;
-    private String permission;
-    private float balance;
     private int available;
 }
