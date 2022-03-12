@@ -21,17 +21,21 @@ public class Page2ServiceImpl implements Page2Service {
 
     @Override
     public boolean insertWareHouse(String account, Page2Insert page2Insert) {
-        ResponsePage2 wareHouse = page2Mapper.getWareHouse(account);
-        if (wareHouse.getAvailable()>0){
-            int x=page2Mapper.updateUserInfo(new Page2InsertDomain(
-                    account,
-                    wareHouse.getAvailable()-1
-            ));
-            int y=page2Mapper.insertWareHouse(new Page2Insert2(
-                    account,
-                    page2Insert.getName()
-            ));
-            return x == 1 || y == 1;
+        try {
+            ResponsePage2 wareHouse = page2Mapper.getWareHouse(account);
+            if (wareHouse.getAvailable()>0){
+                int x=page2Mapper.updateUserInfo(new Page2InsertDomain(
+                        account,
+                        wareHouse.getAvailable()-1
+                ));
+                int y=page2Mapper.insertWareHouse(new Page2Insert2(
+                        account,
+                        page2Insert.getName()
+                ));
+                return x == 1 || y == 1;
+            }
+        } catch (Exception e) {
+            return false;
         }
         return false;
     }
