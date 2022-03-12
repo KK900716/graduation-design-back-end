@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class LoginServiceImpl implements LoginService {
     @Resource
-    RedisTemplate<String,String> redisTemplate;
+    private RedisTemplate<String,String> redisTemplate;
     @Resource
-    LoginMapper loginMapper;
+    private LoginMapper loginMapper;
 
     /**
      * 处理登录逻辑

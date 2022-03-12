@@ -16,7 +16,7 @@ import java.io.IOException;
 @RestController
 public class LoginController {
     @Resource
-    LoginServiceImpl loginService;
+    private LoginServiceImpl loginService;
     //登录逻辑
     @PostMapping("/login")
     public ResponseLogin login(@RequestBody UserData userData){
