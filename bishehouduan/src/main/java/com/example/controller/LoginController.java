@@ -33,7 +33,7 @@ public class LoginController {
     }
     //验证码请求
     @GetMapping("/checkcode")
-    public void checkCode(@Param("uuid") String uuid, HttpServletResponse response) throws IOException {
+    public void checkCode(String uuid, HttpServletResponse response) throws IOException {
         ServletOutputStream outputStream = response.getOutputStream();
         String checkCode= CheckCodeUtil.outputVerifyImage(150,50,outputStream,4);
         loginService.insertUidAndVerification(uuid,checkCode);
