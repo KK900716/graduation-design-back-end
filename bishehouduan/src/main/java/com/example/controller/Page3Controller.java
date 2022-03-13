@@ -31,7 +31,7 @@ public class Page3Controller {
         return page3Service.updateWHMessage(JwtUtil.preCheckJwt(token),updateWHMessage);
     }
     @PostMapping("/upload")
-    public boolean upload(MultipartFile file){
+    public boolean upload(@RequestHeader String token, MultipartFile file){
         return page3Service.upload(file);
     }
 }

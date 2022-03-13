@@ -13,6 +13,7 @@ public interface Page3Service {
     @Transactional
     boolean deleteWareHouse(String account, String name);
     ResponsePage3Context getWareHouseMessage(String account, String name);
+    @Transactional
     boolean upload(MultipartFile file);
     @Transactional
     boolean updateWHMessage(String account, UpdateWHMessage updateWHMessage);
