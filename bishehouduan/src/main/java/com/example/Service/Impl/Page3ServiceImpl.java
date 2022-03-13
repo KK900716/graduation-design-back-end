@@ -60,7 +60,7 @@ public class Page3ServiceImpl implements Page3Service {
         return false;
     }
     @Override
-    public boolean upload(MultipartFile file) {
+    public boolean upload(String account,MultipartFile file) {
         String originName=file.getOriginalFilename();
 //        if (!originName.endsWith(".png")&&!originName.endsWith(".jpg")&&!originName.endsWith(".jpeg")){
 //            return false;

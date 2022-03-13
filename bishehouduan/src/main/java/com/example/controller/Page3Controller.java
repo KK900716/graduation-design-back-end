@@ -32,6 +32,6 @@ public class Page3Controller {
     }
     @PostMapping("/upload")
     public boolean upload(@RequestHeader String token, MultipartFile file){
-        return page3Service.upload(file);
+        return page3Service.upload(JwtUtil.preCheckJwt(token),file);
     }
 }
