@@ -1,6 +1,8 @@
 package com.example.Service;
 
 import com.example.pojo.response.ResponsePage3;
+import com.example.pojo.response.ResponsePage3Context;
+import com.example.pojo.resquest.UpdateWHMessage;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +12,8 @@ public interface Page3Service {
     List<ResponsePage3> selectWareHouseList(String account);
     @Transactional
     boolean deleteWareHouse(String account, String name);
-
+    ResponsePage3Context getWareHouseMessage(String account, String name);
     boolean upload(MultipartFile file);
+    @Transactional
+    boolean updateWHMessage(String account, UpdateWHMessage updateWHMessage);
 }
