@@ -11,13 +11,22 @@ import com.example.pojo.response.ResponsePage3;
 import com.example.pojo.response.ResponsePage3Context;
 import com.example.pojo.resquest.WareHouseNameAndAccount;
 import com.example.pojo.resquest.UpdateWHMessage;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,8 +55,7 @@ public class Page3ServiceImpl implements Page3Service {
             return false;
         }
 //        TODO 删除这个仓库的外键约束
-        if (!page3Mapper.deleteWareHouse(wareHouseNameAndAccount))
-            return false;
+        page3Mapper.deleteWareHouse(wareHouseNameAndAccount);
         if (1==page3Mapper.deleteWareHouseUserInfo(new DeleteWareHouseUserInfoDomain(account,page3Mapper.selectAvailable(account)+1)) && 1==page3Mapper.deleteWareHouseUserWareHouse(wareHouseNameAndAccount)){
 //            删除仓库成功
 //            删除仓库所在文件夹
@@ -121,5 +129,38 @@ public class Page3ServiceImpl implements Page3Service {
                 userWareHouse.getRemaining()-1,
                 userWareHouse.getUserInfo_id()
         ));
+    }
+    @Override
+    public List<String> refresh(String account, String name) {
+        List<String> list=new ArrayList<>();
+//        TODO 此处需要将basePath改成newPath
+        String path=basePath+"/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,name));
+        File file=new File(path);
+        String[] l = file.list();
+        String path2="http://127.0.0.1:80/getImg?account="+account+"&name="+name+"&id=";
+        for (String s : l) {
+            list.add(path2 + "/" + s);
+        }
+        return list;
+    }
+
+    @Override
+    public void getImg(String account, String id,String name, HttpServletResponse response) {
+        String path=basePath+"/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,name));
+        File file=new File(path+"/"+id);
+        FileInputStream fileInputStream=null;
+        try {
+            ServletOutputStream outputStream = response.getOutputStream();
+            fileInputStream=new FileInputStream(file);
+            IOUtils.copy(fileInputStream,outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

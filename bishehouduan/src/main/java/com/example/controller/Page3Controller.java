@@ -8,6 +8,10 @@ import com.example.utils.JwtUtil;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -33,5 +37,13 @@ public class Page3Controller {
     @PostMapping("/upload")
     public boolean upload(@RequestHeader String token, MultipartFile file,String name){
         return page3Service.upload(JwtUtil.preCheckJwt(token),file,name);
+    }
+    @GetMapping("/refresh")
+    public List<String> refresh(@RequestHeader String token,String name){
+        return page3Service.refresh(JwtUtil.preCheckJwt(token),name);
+    }
+    @GetMapping("/getImg")
+    public void getImg(String account,String id,String name,HttpServletResponse response){
+        page3Service.getImg(account,id,name,response);
     }
 }

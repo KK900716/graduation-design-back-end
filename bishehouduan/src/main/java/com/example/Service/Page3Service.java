@@ -6,6 +6,8 @@ import com.example.pojo.resquest.UpdateWHMessage;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface Page3Service {
@@ -17,4 +19,8 @@ public interface Page3Service {
     boolean upload(String account, MultipartFile file, String name);
     @Transactional
     boolean updateWHMessage(String account, UpdateWHMessage updateWHMessage);
+
+    List<String> refresh(String account, String name);
+
+    void getImg(String account, String id,String name, HttpServletResponse response);
 }
