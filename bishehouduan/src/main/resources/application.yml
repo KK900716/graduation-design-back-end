@@ -14,3 +14,5 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
+user:
+  basePath: D:\360MoveData\Users\44380\Desktop\毕设后端\bishehouduan\src\main\resources\warehouse

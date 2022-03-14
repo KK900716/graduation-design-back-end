@@ -5,7 +5,6 @@ import com.example.pojo.response.ResponseLogin;
 import com.example.pojo.resquest.UserData;
 import com.example.utils.CheckCodeUtil;
 import com.example.utils.JwtUtil;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
