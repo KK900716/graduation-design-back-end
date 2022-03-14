@@ -53,7 +53,13 @@ public class Page3ServiceImpl implements Page3Service {
         return false;
     }
     private boolean delete(File folder){
-
+        String[] list = folder.list();
+        File file=null;
+        for (String l:list) {
+            file=new File(folder+"/"+l);
+            file.delete();
+        }
+        return folder.delete();
     }
     @Override
     public ResponsePage3Context getWareHouseMessage(String account, String name) {
