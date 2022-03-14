@@ -46,6 +46,8 @@ public class Page3ServiceImpl implements Page3Service {
             return false;
         }
 //        TODO 删除这个仓库的外键约束
+        if (!page3Mapper.deleteWareHouse(wareHouseNameAndAccount))
+            return false;
         if (1==page3Mapper.deleteWareHouseUserInfo(new DeleteWareHouseUserInfoDomain(account,page3Mapper.selectAvailable(account)+1)) && 1==page3Mapper.deleteWareHouseUserWareHouse(wareHouseNameAndAccount)){
 //            删除仓库成功
 //            删除仓库所在文件夹
