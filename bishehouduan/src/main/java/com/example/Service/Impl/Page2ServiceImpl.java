@@ -8,7 +8,7 @@ import com.example.pojo.dao.Page2Insert2;
 import com.example.pojo.dao.Page2InsertDomain;
 import com.example.pojo.response.ResponsePage2;
 import com.example.pojo.resquest.Page2Insert;
-import com.example.pojo.resquest.Page3Delete;
+import com.example.pojo.resquest.WareHouseNameAndAccount;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +25,8 @@ public class Page2ServiceImpl implements Page2Service {
     private Page3Mapper page3Mapper;
     @Value("${user.basePath}")
     private String basePath;
+    @Value("${user.newPath}")
+    private String newPath;
     @Override
     public ResponsePage2 getWareHouse(String account) {
         return page2Mapper.getWareHouse(account);
@@ -38,7 +40,7 @@ public class Page2ServiceImpl implements Page2Service {
         if (wareHouse.getAvailable()>0){
             try {
 //                尝试寻找有没有这样的仓库，有捕获异常返回false
-                page3Mapper.selectHasWareHouse(new Page3Delete(
+                page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(
                         account,
                         page2Insert.getName()
                 ));
@@ -56,14 +58,18 @@ public class Page2ServiceImpl implements Page2Service {
                     ));
 //                    插入成功则创建目录
                     if (i==1){
-                        File folder=new File(basePath+"/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(
-                                new Page3Delete(
+                        String path="/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(
+                                new WareHouseNameAndAccount(
                                         account,
                                         page2Insert.getName()
                                 )
-                        ));
+                        );
+                        File folder=new File(basePath+path);
+                        File newFolder=new File(newPath+path);
                         if (!folder.exists())
-                            folder.mkdir();
+                            folder.mkdirs();
+                        if (!newFolder.exists())
+                            newFolder.mkdirs();
                         return true;
                     }
                 }

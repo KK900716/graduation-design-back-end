@@ -1,7 +1,7 @@
 package com.example.testMapper;
 
 import com.example.mapper.Page3Mapper;
-import com.example.pojo.resquest.Page3Delete;
+import com.example.pojo.resquest.WareHouseNameAndAccount;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,7 +17,7 @@ public class TestPage3Mapper {
     }
     @Test
     public void testDeleteWareHouse(){
-        System.out.println(page3Mapper.selectHasWareHouse(new Page3Delete(
+        System.out.println(page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(
                 "443808626@qq.com",
                 "6"
         )));

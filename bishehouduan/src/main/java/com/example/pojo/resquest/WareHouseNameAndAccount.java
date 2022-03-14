@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Page3Delete {
+public class WareHouseNameAndAccount {
     private String account;
     private String name;
 }

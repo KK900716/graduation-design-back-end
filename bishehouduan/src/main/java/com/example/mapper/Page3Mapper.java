@@ -2,9 +2,11 @@ package com.example.mapper;
 
 import com.example.pojo.dao.DeleteWareHouseUserInfoDomain;
 import com.example.pojo.dao.UpdateWHMessageDomain;
+import com.example.pojo.dao.UserWareHouse;
+import com.example.pojo.dao.WareHouse;
 import com.example.pojo.response.ResponsePage3;
 import com.example.pojo.response.ResponsePage3Context;
-import com.example.pojo.resquest.Page3Delete;
+import com.example.pojo.resquest.WareHouseNameAndAccount;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public interface Page3Mapper {
     List<ResponsePage3> selectWareHouseList(@Param("account") String account);
 
     @Select("select id from userWareHouse where name=#{name} and userInfo_id=(select id from userInfo where account=#{account})")
-    int selectHasWareHouse(Page3Delete page3Delete);
+    int selectHasWareHouse(WareHouseNameAndAccount wareHouseNameAndAccount);
 
     @Select("select available from userInfo where #{account}")
     int selectAvailable(@Param("account") String account);
@@ -24,10 +26,16 @@ public interface Page3Mapper {
     int deleteWareHouseUserInfo(DeleteWareHouseUserInfoDomain deleteWareHouseUserInfoDomain);
 
     @Delete("delete from userWareHouse where name=#{name} and userInfo_id=(select id from userInfo where account=#{account})")
-    int deleteWareHouseUserWareHouse(Page3Delete page3Delete);
+    int deleteWareHouseUserWareHouse(WareHouseNameAndAccount wareHouseNameAndAccount);
 
     @Select("select userwarehouse.name,count,userwarehouse.available,remaining from userwarehouse,userinfo where userinfo.id=userwarehouse.userInfo_id and account=#{account} and userwarehouse.name=#{name}")
-    ResponsePage3Context selectWareHouse(Page3Delete page3Delete);
+    ResponsePage3Context selectWareHouse(WareHouseNameAndAccount wareHouseNameAndAccount);
     @Update("update userwarehouse,userinfo set userwarehouse.name=#{newWHName} where userinfo.id=userwarehouse.userInfo_id and account=#{account} and userwarehouse.name=#{oldWHName}")
     int updateWHMessage(UpdateWHMessageDomain updateWHMessageDomain);
+    @Select("select userwarehouse.id,userwarehouse.name,userwarehouse.count,userwarehouse.available,remaining,userwarehouse.userInfo_id from userwarehouse,userinfo where userinfo.id=userwarehouse.userInfo_id and account=#{account} and userwarehouse.name=#{name}")
+    UserWareHouse selectWareHouseAvailable(WareHouseNameAndAccount wareHouseNameAndAccount);
+    @Insert("insert into warehouse values (#{id},#{userWarehouse_id},#{state})")
+    boolean insertWarehouse(WareHouse wareHouse);
+    @Update("update userwarehouse set available=#{available},remaining=#{remaining} where id=#{id}")
+    boolean updateUserWareHouse(UserWareHouse userWareHouse);
 }
