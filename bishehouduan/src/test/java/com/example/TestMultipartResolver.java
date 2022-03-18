@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.multipart.MultipartResolver;
 
 @SpringBootTest
-public class testMultipartResolver {
+public class TestMultipartResolver {
     @Test
     public void testMultipartResolver(MultipartResolver multipartResolver){
     }
