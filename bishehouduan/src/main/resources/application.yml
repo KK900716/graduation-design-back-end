@@ -17,3 +17,6 @@ spring:
 user:
   basePath: D:\360MoveData\Users\44380\Desktop\毕设后端\bishehouduan\src\main\resources\warehouse
   newPath: D:\360MoveData\Users\44380\Desktop\毕设后端\bishehouduan\src\main\resources\newWarehouse
+  sendPython:
+    port: 9600
+    ip: 127.0.0.1

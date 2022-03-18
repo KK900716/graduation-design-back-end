@@ -119,9 +119,9 @@ public class Page3ServiceImpl implements Page3Service {
         } catch (IOException e) {
             return false;
         }
-//        TODO 扣费
-//        TODO 启动图像识别算法
-        asyncTaskService.dealWithImg(newFile);
+//        TODO 扣费逻辑
+//        启动图像识别算法
+        asyncTaskService.dealWithImg(newFile.getPath());
 //        回写数据
         return page3Mapper.updateUserWareHouse(new UserWareHouse(
                 userWareHouse.getId(),

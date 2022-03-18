@@ -14,7 +14,7 @@ public class TestDealWithImg {
     @Test
     public void testDealWithImg(){
         for (int i = 0; i < 5; i++) {
-            asyncTaskService.dealWithImg(new File("D:\\360MoveData\\Users\\44380\\Desktop\\yicun.jpg"));
+            asyncTaskService.dealWithImg("D:\\360MoveData\\Users\\44380\\Desktop\\yicun.jpg");
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
