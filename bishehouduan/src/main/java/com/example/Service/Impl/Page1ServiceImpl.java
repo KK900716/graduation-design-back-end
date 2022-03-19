@@ -24,7 +24,7 @@ public class Page1ServiceImpl implements Page1Service {
     @Override
     public ResponsePate1Update updateUserInfo(String preCheckJwt, Page1Update page1Update) {
         page1Update.setAccount(page1Update.getAccount().trim());
-        int res=0;
+        int res;
         String password;
         try {
             res=page1Mapper.updateUserInfo(new Page1UpdateDomain(

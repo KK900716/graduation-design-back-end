@@ -39,5 +39,5 @@ public interface Page3Mapper {
     @Update("update userwarehouse set available=#{available},remaining=#{remaining} where id=#{id}")
     boolean updateUserWareHouse(UserWareHouse userWareHouse);
     @Delete("delete from wareHouse where userWareHouse_id=(select userwarehouse.id from userwarehouse,userinfo where account=#{account} and userwarehouse.name=#{name})")
-    boolean deleteWareHouse(WareHouseNameAndAccount wareHouseNameAndAccount);
+    void deleteWareHouse(WareHouseNameAndAccount wareHouseNameAndAccount);
 }

@@ -66,10 +66,15 @@ public class Page3ServiceImpl implements Page3Service {
     }
     private boolean delete(File folder){
         String[] list = folder.list();
-        File file=null;
-        for (String l:list) {
-            file=new File(folder+"/"+l);
-            file.delete();
+        File file;
+        boolean delete;
+        if (list!=null){
+            for (String l:list) {
+                file=new File(folder+"/"+l);
+                delete = file.delete();
+                if (!delete)
+                    return false;
+            }
         }
         return folder.delete();
     }
@@ -100,7 +105,9 @@ public class Page3ServiceImpl implements Page3Service {
     public boolean upload(String account, MultipartFile file, String name) {
         String originName=file.getOriginalFilename();
 //        验证上传文件是否正确
-        if (!originName.endsWith(".png")&&!originName.endsWith(".jpg")&&!originName.endsWith(".jpeg")){
+        if (originName==null)
+            return false;
+        else if (!originName.endsWith(".png")&&!originName.endsWith(".jpg")&&!originName.endsWith(".jpeg")){
             return false;
         }
         UserWareHouse userWareHouse=page3Mapper.selectWareHouseAvailable(new WareHouseNameAndAccount(account,name));
@@ -140,6 +147,8 @@ public class Page3ServiceImpl implements Page3Service {
         File file=new File(path);
         String[] l = file.list();
         String path2="http://127.0.0.1:80/getImg?account="+account+"&name="+name+"&id=";
+        if (l==null)
+            return null;
         for (String s : l) {
             list.add(path2 + "/" + s);
         }
@@ -159,7 +168,8 @@ public class Page3ServiceImpl implements Page3Service {
             e.printStackTrace();
         } finally {
             try {
-                fileInputStream.close();
+                if (fileInputStream!=null)
+                    fileInputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

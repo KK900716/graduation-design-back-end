@@ -33,10 +33,13 @@ public class AsyncTaskService {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                printWriter.close();
+                if (printWriter!=null)
+                    printWriter.close();
                 try {
-                    socket.close();
-                    bufferedReader.close();
+                    if (socket!=null)
+                        socket.close();
+                    if (bufferedReader!=null)
+                        bufferedReader.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

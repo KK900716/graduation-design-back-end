@@ -2,11 +2,9 @@ package com.example.controller;
 
 
 import com.example.Service.Impl.Page2ServiceImpl;
-import com.example.Service.Page2Service;
 import com.example.pojo.response.ResponsePage2;
 import com.example.pojo.resquest.Page2Insert;
 import com.example.utils.JwtUtil;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
