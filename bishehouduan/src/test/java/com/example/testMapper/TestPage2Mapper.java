@@ -19,10 +19,7 @@ public class TestPage2Mapper {
     private String basePath;
     @Test
     public void testUpdateUserInfo(){
-        page2Mapper.updateUserInfo(new Page2InsertDomain(
-                "443808626@qq.com",
-                0
-        ));
+
     }
     @Test
     public void testInsertWareHouse(){

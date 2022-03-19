@@ -10,4 +10,5 @@ import lombok.*;
 public class Page2InsertDomain {
     private String account;
     private int available;
+    private float balance;
 }

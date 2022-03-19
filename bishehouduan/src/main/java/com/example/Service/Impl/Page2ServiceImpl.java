@@ -46,9 +46,15 @@ public class Page2ServiceImpl implements Page2Service {
                 ));
             } catch (Exception e) {
 //                没有继续执行，先更新仓库标志数据
+//                查询余额
+                float balance=page2Mapper.selectBalance(account);
+                if (balance<=1)
+                    return false;
+//                更新仓库标志位
                 int x=page2Mapper.updateUserInfo(new Page2InsertDomain(
                         account,
-                        wareHouse.getAvailable()-1
+                        wareHouse.getAvailable()-1,
+                        balance-1
                 ));
                 if (x==1){
 //                    插入新仓库

@@ -9,8 +9,10 @@ import org.apache.ibatis.annotations.*;
 public interface Page2Mapper {
     @Select("select available,capacity from userInfo where account=#{account} limit 1")
     ResponsePage2 getWareHouse(@Param("account") String account);
-    @Update("update userinfo set available=#{available} where account=#{account}")
+    @Update("update userinfo set available=#{available},balance=#{balance} where account=#{account}")
     int updateUserInfo(Page2InsertDomain page2InsertDomain);
     @Insert("insert into userwarehouse values (null,#{name},#{count},#{available},#{remaining},(select id from userInfo where account=#{account}))")
     int insertWareHouse(Page2Insert2 page2Insert2);
+    @Select("select balance from userinfo where account=#{account}")
+    float selectBalance(@Param("account") String account);
 }
