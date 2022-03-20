@@ -1,8 +1,10 @@
 package com.example;
 
+import com.example.async.AsyncTaskService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,6 +14,21 @@ import java.net.Socket;
 
 @SpringBootTest
 public class TestSocket {
+    @Resource
+    AsyncTaskService asyncTaskService;
+    @Test
+    public void testSocket(){
+        for (int i = 0; i < 10; i++) {
+            asyncTaskService.dealWithImg("testURL"+i);
+            asyncTaskService.dealWithImg("testURL"+i);
+            System.out.println(i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @Test
     public void simulationService(){
         PrintWriter pw=null;

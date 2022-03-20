@@ -25,7 +25,7 @@ public class AsyncTaskService {
                 printWriter=new PrintWriter(socket.getOutputStream());
                 bufferedReader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
     //            发送数据
-                printWriter.println(url);
+                printWriter.println("%%"+url+"%%");
                 printWriter.flush();
     //            接受数据
                 String line=bufferedReader.readLine();
