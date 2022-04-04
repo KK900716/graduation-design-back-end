@@ -177,6 +177,9 @@ public class Page3ServiceImpl implements Page3Service {
 
     @Override
     public boolean getScore(String account, int score, String name, String id) {
+        id=id.split(".")[0];
+        id=id.substring(1,id.length());
+        System.out.println(id);
         return false;
     }
 }

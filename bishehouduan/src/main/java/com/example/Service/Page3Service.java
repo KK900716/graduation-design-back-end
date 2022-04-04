@@ -21,6 +21,6 @@ public interface Page3Service {
     List<String> refresh(String account, String name);
 
     void getImg(String account, String id,String name, HttpServletResponse response);
-
+    @Transactional
     boolean getScore(String account, int score, String name, String id);
 }
