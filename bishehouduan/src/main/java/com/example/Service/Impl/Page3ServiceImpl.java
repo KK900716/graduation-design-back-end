@@ -174,4 +174,9 @@ public class Page3ServiceImpl implements Page3Service {
             }
         }
     }
+
+    @Override
+    public boolean getScore(String account, int score, String name, String id) {
+        return false;
+    }
 }

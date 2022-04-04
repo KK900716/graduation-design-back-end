@@ -43,4 +43,8 @@ public class Page3Controller {
     public void getImg(String account,String id,String name,HttpServletResponse response){
         page3Service.getImg(account,id,name,response);
     }
+    @GetMapping("/submitScore")
+    public boolean getScore(@RequestHeader String token,@RequestParam int score,@RequestParam String name,@RequestParam String id){
+        return page3Service.getScore(JwtUtil.preCheckJwt(token),score,name,id);
+    }
 }
