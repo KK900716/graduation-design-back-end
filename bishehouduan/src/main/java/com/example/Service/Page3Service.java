@@ -17,10 +17,8 @@ public interface Page3Service {
     boolean upload(String account, MultipartFile file, String name);
     @Transactional
     boolean updateWHMessage(String account, UpdateWHMessage updateWHMessage);
-
     List<String> refresh(String account, String name);
-
     void getImg(String account, String id,String name, HttpServletResponse response);
-    @Transactional
+
     boolean getScore(String account, int score, String name, String id);
 }

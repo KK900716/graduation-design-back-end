@@ -4,10 +4,7 @@ import com.example.Service.Page3Service;
 import com.example.async.AsyncTaskService;
 import com.example.mapper.Page3Mapper;
 import com.example.mapper.PublicMapper;
-import com.example.pojo.dao.DeleteWareHouseUserInfoDomain;
-import com.example.pojo.dao.UpdateWHMessageDomain;
-import com.example.pojo.dao.UserWareHouse;
-import com.example.pojo.dao.WareHouse;
+import com.example.pojo.dao.*;
 import com.example.pojo.response.ResponsePage3;
 import com.example.pojo.response.ResponsePage3Context;
 import com.example.pojo.resquest.WareHouseNameAndAccount;
@@ -177,9 +174,12 @@ public class Page3ServiceImpl implements Page3Service {
 
     @Override
     public boolean getScore(String account, int score, String name, String id) {
-        id=id.split(".")[0];
-        id=id.substring(1,id.length());
+        id=id.split("\\.")[0];
         System.out.println(id);
-        return false;
+        id=id.substring(1,id.length());
+        return page3Mapper.updateScore(new UpdateScore(
+                id,
+                score
+        ));
     }
 }

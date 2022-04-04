@@ -1,9 +1,6 @@
 package com.example.mapper;
 
-import com.example.pojo.dao.DeleteWareHouseUserInfoDomain;
-import com.example.pojo.dao.UpdateWHMessageDomain;
-import com.example.pojo.dao.UserWareHouse;
-import com.example.pojo.dao.WareHouse;
+import com.example.pojo.dao.*;
 import com.example.pojo.response.ResponsePage3;
 import com.example.pojo.response.ResponsePage3Context;
 import com.example.pojo.resquest.WareHouseNameAndAccount;
@@ -34,10 +31,12 @@ public interface Page3Mapper {
     int updateWHMessage(UpdateWHMessageDomain updateWHMessageDomain);
     @Select("select userwarehouse.id,userwarehouse.name,userwarehouse.count,userwarehouse.available,remaining,userwarehouse.userInfo_id from userwarehouse,userinfo where userinfo.id=userwarehouse.userInfo_id and account=#{account} and userwarehouse.name=#{name}")
     UserWareHouse selectWareHouseAvailable(WareHouseNameAndAccount wareHouseNameAndAccount);
-    @Insert("insert into warehouse values (#{id},#{userWarehouse_id},#{state})")
+    @Insert("insert into warehouse values (#{id},#{userWarehouse_id},#{state},0)")
     boolean insertWarehouse(WareHouse wareHouse);
     @Update("update userwarehouse set available=#{available},remaining=#{remaining} where id=#{id}")
     boolean updateUserWareHouse(UserWareHouse userWareHouse);
     @Delete("delete from wareHouse where userWareHouse_id=(select userwarehouse.id from userwarehouse,userinfo where account=#{account} and userwarehouse.name=#{name})")
     void deleteWareHouse(WareHouseNameAndAccount wareHouseNameAndAccount);
+    @Update("update warehouse set score=#{score} where id=#{id}")
+    boolean updateScore(UpdateScore updateScore);
 }
