@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.Socket;
 
+/**
+ * @author ljc
+ */
 @Service
 public class AsyncTaskService {
-    private final static Integer lock= 0;
+    private final static Integer LOCK = 0;
     @Value("${user.sendPython.port}")
     private int port;
     @Value("${user.sendPython.ip}")
@@ -19,7 +22,7 @@ public class AsyncTaskService {
         PrintWriter printWriter=null;
         BufferedReader bufferedReader=null;
         Socket socket=null;
-        synchronized (lock){
+        synchronized (LOCK){
             try {
                 socket = new Socket(ip,port);
                 printWriter=new PrintWriter(socket.getOutputStream());
@@ -33,13 +36,16 @@ public class AsyncTaskService {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                if (printWriter!=null)
+                if (printWriter!=null) {
                     printWriter.close();
+                }
                 try {
-                    if (socket!=null)
+                    if (socket!=null) {
                         socket.close();
-                    if (bufferedReader!=null)
+                    }
+                    if (bufferedReader!=null) {
                         bufferedReader.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

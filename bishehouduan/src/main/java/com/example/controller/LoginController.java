@@ -12,11 +12,19 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * @author 44380
+ */
 @RestController
 public class LoginController {
     @Resource
     private LoginServiceImpl loginService;
     //登录逻辑
+    /**
+     *
+     * @param userData 用户信息
+     * @return ResponseLogin
+     */
     @PostMapping("/login")
     public ResponseLogin login(@RequestBody UserData userData){
         ResponseLogin responseLogin=new ResponseLogin();
@@ -31,6 +39,12 @@ public class LoginController {
         return responseLogin;
     }
     //验证码请求
+
+    /**
+     *
+     * @param uuid uuid
+     * @param response 返回图片流
+     */
     @GetMapping("/checkcode")
     public void checkCode(String uuid, HttpServletResponse response) throws IOException {
         ServletOutputStream outputStream = response.getOutputStream();
@@ -39,6 +53,12 @@ public class LoginController {
         //TODO 便于测试
         System.out.println(checkCode);
     }
+
+    /**
+     *
+     * @param token 检查token
+     * @return 返回是否正确
+     */
     @GetMapping("/checkToken")
     public boolean checkToken(@RequestHeader(value = "token") String token){
         return JwtUtil.checkToken(token);

@@ -4,9 +4,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+/**
+ * @author 44380
+ */
 @Mapper
 public interface LoginMapper {
     /**
+     * 通过account查询密码
      * @param account 账户
      * @return password 密码
      */
