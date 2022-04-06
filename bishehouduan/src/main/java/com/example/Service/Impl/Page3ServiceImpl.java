@@ -8,7 +8,7 @@ import com.example.pojo.dao.*;
 import com.example.pojo.response.ResponsePage3;
 import com.example.pojo.response.ResponsePage3Context;
 import com.example.pojo.resquest.WareHouseNameAndAccount;
-import com.example.pojo.resquest.UpdateWHMessage;
+import com.example.pojo.resquest.UpdateWareHouseMessage;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -81,16 +81,16 @@ public class Page3ServiceImpl implements Page3Service {
         return page3Mapper.selectWareHouse(wareHouseNameAndAccount);
     }
     @Override
-    public boolean updateWHMessage(String account, UpdateWHMessage updateWHMessage) {
+    public boolean updateWHMessage(String account, UpdateWareHouseMessage updateWareHouseMessage) {
         try {
-            page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,updateWHMessage.getNewWHName()));
+            page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account, updateWareHouseMessage.getNewWHName()));
         } catch (Exception e1) {
             try {
-                page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,updateWHMessage.getOldWHName()));
+                page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account, updateWareHouseMessage.getOldWHName()));
                 return 1==page3Mapper.updateWHMessage(new UpdateWHMessageDomain(
                         account,
-                        updateWHMessage.getOldWHName(),
-                        updateWHMessage.getNewWHName()
+                        updateWareHouseMessage.getOldWHName(),
+                        updateWareHouseMessage.getNewWHName()
                 ));
             } catch (Exception e2) {
                 return false;

@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateWHMessage {
+public class UpdateWareHouseMessage {
     private String oldWHName;
     private String newWHName;
 }

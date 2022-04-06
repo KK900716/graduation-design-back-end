@@ -16,6 +16,15 @@ import javax.annotation.Resource;
 public class Page4Controller {
     @Resource
     Page4ServiceImpl page4Service;
+    /**
+     * @author ljc
+     * @desciption Page4Controller.updatePassword()
+     * 修改密码
+     * @date 2022/4/6~16:49
+     * @param token token
+     * @param updatePassword 密码
+     * @return boolean
+     */
     @PostMapping("updatePassword")
     public boolean updatePassword(@RequestHeader String token, @RequestBody UpdatePassword updatePassword){
         return page4Service.updatePassword(JwtUtil.preCheckJwt(token),updatePassword);
