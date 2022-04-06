@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.Service.Impl.Page1ServiceImpl;
+import com.example.service.Impl.Page1ServiceImpl;
 import com.example.pojo.response.ResponsePage1;
 import com.example.pojo.response.ResponsePate1Update;
 import com.example.pojo.resquest.Page1Update;

@@ -1,4 +1,4 @@
-package com.example.Service;
+package com.example.service;
 
 import com.example.pojo.response.ResponsePage3;
 import com.example.pojo.response.ResponsePage3Context;
@@ -52,7 +52,7 @@ public interface Page3Service {
      */
     boolean upload(String account, MultipartFile file, String name);
     /**
-     * com.example.Service.Page3Service.updateWareHhouseMessage():
+     * com.example.Service.Page3Service.updateWareHouseMessage():
      * 更新仓库信息
      * @author ljc
      * @date 2022/4/6~17:38

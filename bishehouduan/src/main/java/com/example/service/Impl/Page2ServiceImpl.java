@@ -1,6 +1,6 @@
-package com.example.Service.Impl;
+package com.example.service.Impl;
 
-import com.example.Service.Page2Service;
+import com.example.service.Page2Service;
 import com.example.mapper.Page2Mapper;
 import com.example.mapper.Page3Mapper;
 import com.example.mapper.PublicMapper;

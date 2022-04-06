@@ -1,7 +1,10 @@
-package com.example.Service;
+package com.example.service;
 
 import com.example.pojo.resquest.UpdatePassword;
 
+/**
+ * @author ljc
+ */
 public interface Page4Service {
     /**
      * com.example.Service.Page4Service.updatePassword():

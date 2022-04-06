@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.Service.Impl.Page4ServiceImpl;
+import com.example.service.Impl.Page4ServiceImpl;
 import com.example.pojo.resquest.UpdatePassword;
 import com.example.utils.JwtUtil;
 import org.springframework.web.bind.annotation.PostMapping;

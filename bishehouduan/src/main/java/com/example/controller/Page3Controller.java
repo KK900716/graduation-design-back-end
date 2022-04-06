@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.Service.Impl.Page3ServiceImpl;
+import com.example.service.Impl.Page3ServiceImpl;
 import com.example.pojo.response.ResponsePage3;
 import com.example.pojo.response.ResponsePage3Context;
 import com.example.pojo.resquest.UpdateWareHouseMessage;

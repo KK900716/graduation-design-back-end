@@ -1,6 +1,6 @@
-package com.example.Service.Impl;
+package com.example.service.Impl;
 
-import com.example.Service.Page4Service;
+import com.example.service.Page4Service;
 import com.example.mapper.Page4Mapper;
 import com.example.pojo.dao.UpdatePasswordDomain;
 import com.example.pojo.resquest.UpdatePassword;

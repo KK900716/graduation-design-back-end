@@ -1,6 +1,6 @@
-package com.example.Service.Impl;
+package com.example.service.Impl;
 
-import com.example.Service.LoginService;
+import com.example.service.LoginService;
 import com.example.mapper.LoginMapper;
 import com.example.pojo.resquest.UserData;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -1,8 +1,7 @@
-package com.example.Service;
+package com.example.service;
 
 import com.example.pojo.response.ResponsePage2;
 import com.example.pojo.resquest.Page2Insert;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author ljc

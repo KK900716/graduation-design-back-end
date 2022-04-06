@@ -1,6 +1,6 @@
-package com.example.Service.Impl;
+package com.example.service.Impl;
 
-import com.example.Service.Page3Service;
+import com.example.service.Page3Service;
 import com.example.async.AsyncTaskService;
 import com.example.mapper.Page3Mapper;
 import com.example.mapper.PublicMapper;
