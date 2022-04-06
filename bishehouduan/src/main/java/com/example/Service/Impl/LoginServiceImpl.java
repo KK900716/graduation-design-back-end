@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author ljc
+ */
 @Service
 public class LoginServiceImpl implements LoginService {
     @Resource
@@ -24,8 +27,9 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public boolean userDataVerification(UserData userData) {
         String checkCode = redisTemplate.opsForValue().get(userData.getUid());
-        if (!userData.getVerificationCode().equals(checkCode))
+        if (!userData.getVerificationCode().equals(checkCode)) {
             return false;
+        }
         try {
             return loginMapper.selectUserLogin(userData.getUserAccount()).equals(userData.getUserPassword());
         } catch (Exception e) {

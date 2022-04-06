@@ -14,6 +14,13 @@ import java.util.concurrent.Executor;
 @Configuration
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {
+    /**
+     * com.example.config.AsyncConfig.getAsyncExecutor():
+     * spring设置线程池
+     * @author ljc
+     * @date 2022/4/6~17:58
+     * @return java.util.concurrent.Executor 返回线程池
+     */
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();

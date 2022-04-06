@@ -9,6 +9,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
+    /**
+     * com.example.config.MvcConfig.addCorsMappings():
+     * 解决跨域问题
+     * @author ljc
+     * @date 2022/4/6~17:58
+     * @param registry 拦截器
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")

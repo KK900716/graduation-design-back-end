@@ -67,7 +67,7 @@ public class Page3Controller {
      */
     @PutMapping("/updateWHMessage")
     public boolean updateWareHouseMessage(@RequestHeader String token, @RequestBody UpdateWareHouseMessage updateWareHouseMessage){
-        return page3Service.updateWHMessage(JwtUtil.preCheckJwt(token), updateWareHouseMessage);
+        return page3Service.updateWareHouseMessage(JwtUtil.preCheckJwt(token), updateWareHouseMessage);
     }
     /**
      * @author ljc

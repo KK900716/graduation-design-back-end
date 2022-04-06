@@ -17,6 +17,13 @@ public class AsyncTaskService {
     private int port;
     @Value("${user.sendPython.ip}")
     private String ip;
+    /**
+     * com.example.async.AsyncTaskService.dealWithImg():
+     * 连接python服务器处理图片
+     * @author ljc
+     * @date 2022/4/6~17:59
+     * @param url 图片地址
+     */
     @Async
     public void dealWithImg(String url) {
         PrintWriter printWriter=null;

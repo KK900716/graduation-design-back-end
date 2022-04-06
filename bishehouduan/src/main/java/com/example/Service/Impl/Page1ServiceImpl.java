@@ -11,6 +11,9 @@ import com.example.utils.JwtUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+/**
+ * @author ljc
+ */
 @Service
 public class Page1ServiceImpl implements Page1Service {
     @Resource
@@ -36,8 +39,9 @@ public class Page1ServiceImpl implements Page1Service {
         } catch (Exception e) {
             return new ResponsePate1Update();
         }
-        if (res==1)
+        if (res==1) {
             return new ResponsePate1Update(true,JwtUtil.createToken(page1Update.getAccount(),password));
+        }
         return new ResponsePate1Update();
     }
 }

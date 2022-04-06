@@ -2,6 +2,9 @@ package com.example.pojo.dao;
 
 import lombok.*;
 
+/**
+ * @author ljc
+ */
 @Getter
 @Setter
 @ToString
@@ -9,11 +12,11 @@ import lombok.*;
 @AllArgsConstructor
 public class WareHouse {
     private String id;
-    private int userWarehouse_id;
+    private int userWarehouseId;
     private String state="处理中";
 
-    public WareHouse(String id,int userWarehouse_id) {
+    public WareHouse(String id,int userWarehouseId) {
         this.id=id;
-        this.userWarehouse_id = userWarehouse_id;
+        this.userWarehouseId = userWarehouseId;
     }
 }

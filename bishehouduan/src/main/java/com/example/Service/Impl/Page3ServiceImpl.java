@@ -12,6 +12,7 @@ import com.example.pojo.resquest.UpdateWareHouseMessage;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -24,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author ljc
+ */
 @Service
 public class Page3ServiceImpl implements Page3Service {
     @Resource
@@ -41,6 +45,7 @@ public class Page3ServiceImpl implements Page3Service {
         return page3Mapper.selectWareHouseList(account);
     }
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean deleteWareHouse(String account, String name){
         WareHouseNameAndAccount wareHouseNameAndAccount = new WareHouseNameAndAccount(account,name);
         int i;
@@ -69,8 +74,9 @@ public class Page3ServiceImpl implements Page3Service {
             for (String l:list) {
                 file=new File(folder+"/"+l);
                 delete = file.delete();
-                if (!delete)
+                if (!delete) {
                     return false;
+                }
             }
         }
         return folder.delete();
@@ -81,16 +87,17 @@ public class Page3ServiceImpl implements Page3Service {
         return page3Mapper.selectWareHouse(wareHouseNameAndAccount);
     }
     @Override
-    public boolean updateWHMessage(String account, UpdateWareHouseMessage updateWareHouseMessage) {
+    @Transactional(rollbackFor = Exception.class)
+    public boolean updateWareHouseMessage(String account, UpdateWareHouseMessage updateWareHouseMessage) {
         try {
-            page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account, updateWareHouseMessage.getNewWHName()));
+            page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account, updateWareHouseMessage.getNewWareHouseName()));
         } catch (Exception e1) {
             try {
-                page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account, updateWareHouseMessage.getOldWHName()));
-                return 1==page3Mapper.updateWHMessage(new UpdateWHMessageDomain(
+                page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account, updateWareHouseMessage.getOldWareHouseName()));
+                return 1==page3Mapper.updateWareHouseMessage(new UpdateWareHouseMessageDomain(
                         account,
-                        updateWareHouseMessage.getOldWHName(),
-                        updateWareHouseMessage.getNewWHName()
+                        updateWareHouseMessage.getOldWareHouseName(),
+                        updateWareHouseMessage.getNewWareHouseName()
                 ));
             } catch (Exception e2) {
                 return false;
@@ -99,24 +106,30 @@ public class Page3ServiceImpl implements Page3Service {
         return false;
     }
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean upload(String account, MultipartFile file, String name) {
         String originName=file.getOriginalFilename();
 //        验证上传文件是否正确
-        if (originName==null)
+        String png = ".png";
+        String jpg = ".jpg";
+        String jpeg = ".jpeg";
+        if (originName==null) {
             return false;
-        else if (!originName.endsWith(".png")&&!originName.endsWith(".jpg")&&!originName.endsWith(".jpeg")){
+        } else if (!originName.endsWith(png)&&!originName.endsWith(jpeg)&&!originName.endsWith(jpg)){
             return false;
         }
         UserWareHouse userWareHouse=page3Mapper.selectWareHouseAvailable(new WareHouseNameAndAccount(account,name));
         //        查看仓库容量
-        if (userWareHouse.getRemaining()<=0)
+        if (userWareHouse.getRemaining()<=0) {
             return false;
+        }
 //        插入图片到数据库
         String id = UUID.randomUUID().toString();
-        if (!page3Mapper.insertWarehouse(new WareHouse(id,userWareHouse.getId())))
+        if (!page3Mapper.insertWarehouse(new WareHouse(id,userWareHouse.getId()))) {
             return false;
+        }
         String newName= id +".png";
-        File newFile = new File(basePath + "/" + userWareHouse.getUserInfo_id() + "/" + userWareHouse.getId(), newName);
+        File newFile = new File(basePath + "/" + userWareHouse.getUserInfoId() + "/" + userWareHouse.getId(), newName);
 //        存储图片
         try {
             file.transferTo(newFile);
@@ -132,7 +145,7 @@ public class Page3ServiceImpl implements Page3Service {
                 userWareHouse.getCount(),
                 userWareHouse.getAvailable()+1,
                 userWareHouse.getRemaining()-1,
-                userWareHouse.getUserInfo_id()
+                userWareHouse.getUserInfoId()
         ));
     }
     @Override
@@ -143,8 +156,9 @@ public class Page3ServiceImpl implements Page3Service {
         File file=new File(path);
         String[] l = file.list();
         String path2="http://127.0.0.1:80/getImg?account="+account+"&name="+name+"&id=";
-        if (l==null)
+        if (l==null) {
             return null;
+        }
         for (String s : l) {
             list.add(path2 + "/" + s);
         }
@@ -164,8 +178,9 @@ public class Page3ServiceImpl implements Page3Service {
             e.printStackTrace();
         } finally {
             try {
-                if (fileInputStream!=null)
+                if (fileInputStream!=null) {
                     fileInputStream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -176,7 +191,7 @@ public class Page3ServiceImpl implements Page3Service {
     public boolean getScore(String account, int score, String name, String id) {
         id=id.split("\\.")[0];
         System.out.println(id);
-        id=id.substring(1,id.length());
+        id=id.substring(1);
         return page3Mapper.updateScore(new UpdateScore(
                 id,
                 score

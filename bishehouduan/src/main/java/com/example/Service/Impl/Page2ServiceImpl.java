@@ -11,10 +11,14 @@ import com.example.pojo.resquest.Page2Insert;
 import com.example.pojo.resquest.WareHouseNameAndAccount;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.File;
 
+/**
+ * @author ljc
+ */
 @Service
 public class Page2ServiceImpl implements Page2Service {
     @Resource
@@ -33,6 +37,7 @@ public class Page2ServiceImpl implements Page2Service {
     }
 
     @Override
+    @Transactional(rollbackFor=Exception.class)
     public boolean insertWareHouse(String account, Page2Insert page2Insert) {
 //        获得仓库可用数量
         ResponsePage2 wareHouse = page2Mapper.getWareHouse(account);
@@ -48,8 +53,9 @@ public class Page2ServiceImpl implements Page2Service {
 //                没有继续执行，先更新仓库标志数据
 //                查询余额
                 float balance=page2Mapper.selectBalance(account);
-                if (balance<=1)
+                if (balance<=1) {
                     return false;
+                }
 //                更新仓库标志位
                 int x=page2Mapper.updateUserInfo(new Page2InsertDomain(
                         account,
@@ -72,10 +78,12 @@ public class Page2ServiceImpl implements Page2Service {
                         );
                         File folder=new File(basePath+path);
                         File newFolder=new File(newPath+path);
-                        if (!folder.exists())
+                        if (!folder.exists()) {
                             folder.mkdirs();
-                        if (!newFolder.exists())
+                        }
+                        if (!newFolder.exists()) {
                             newFolder.mkdirs();
+                        }
                         return true;
                     }
                 }

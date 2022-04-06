@@ -2,6 +2,9 @@ package com.example.pojo.dao;
 
 import lombok.*;
 
+/**
+ * @author ljc
+ */
 @Getter
 @Setter
 @ToString
@@ -13,5 +16,5 @@ public class UserWareHouse {
     private int count;
     private int available;
     private int remaining;
-    private int userInfo_id;
+    private int userInfoId;
 }
