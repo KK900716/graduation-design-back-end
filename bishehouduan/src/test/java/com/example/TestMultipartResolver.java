@@ -7,6 +7,10 @@ import org.springframework.web.multipart.MultipartResolver;
 @SpringBootTest
 public class TestMultipartResolver {
     @Test
-    public void testMultipartResolver(MultipartResolver multipartResolver){
+    public void test(){
+        System.out.println("abc");
     }
+//    @Test
+//    public void testMultipartResolver(MultipartResolver multipartResolver){
+//    }
 }

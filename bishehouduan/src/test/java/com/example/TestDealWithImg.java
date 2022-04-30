@@ -9,17 +9,21 @@ import java.io.File;
 
 @SpringBootTest
 public class TestDealWithImg {
-    @Resource
-    AsyncTaskService asyncTaskService;
     @Test
-    public void testDealWithImg(){
-        for (int i = 0; i < 5; i++) {
-            asyncTaskService.dealWithImg("D:\\360MoveData\\Users\\44380\\Desktop\\yicun.jpg");
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    public void test(){
+        System.out.println("abc");
     }
+//    @Resource
+//    AsyncTaskService asyncTaskService;
+//    @Test
+//    public void testDealWithImg(){
+//        for (int i = 0; i < 5; i++) {
+//            asyncTaskService.dealWithImg("D:\\360MoveData\\Users\\44380\\Desktop\\yicun.jpg");
+//            try {
+//                Thread.sleep(3000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }

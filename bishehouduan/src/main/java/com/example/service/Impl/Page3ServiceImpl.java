@@ -119,6 +119,7 @@ public class Page3ServiceImpl implements Page3Service {
             return false;
         }
         UserWareHouse userWareHouse=page3Mapper.selectWareHouseAvailable(new WareHouseNameAndAccount(account,name));
+        System.out.println(userWareHouse);
         //        查看仓库容量
         if (userWareHouse.getRemaining()<=0) {
             return false;
@@ -134,6 +135,7 @@ public class Page3ServiceImpl implements Page3Service {
         try {
             file.transferTo(newFile);
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
 //        启动图像识别算法

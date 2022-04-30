@@ -92,6 +92,9 @@ public interface Page3Mapper {
      * @return com.example.pojo.dao.UserWareHouse
      */
     @Select("select userwarehouse.id,userwarehouse.name,userwarehouse.count,userwarehouse.available,remaining,userwarehouse.userInfo_id from userwarehouse,userinfo where userinfo.id=userwarehouse.userInfo_id and account=#{account} and userwarehouse.name=#{name}")
+    @Results({
+            @Result(property = "userInfoId",column = "userwarehouse.userInfo_id")
+    })
     UserWareHouse selectWareHouseAvailable(WareHouseNameAndAccount wareHouseNameAndAccount);
     /**
      * com.example.mapper.Page3Mapper.insertWarehouse():
@@ -101,7 +104,7 @@ public interface Page3Mapper {
      * @param wareHouse 图片信息
      * @return boolean
      */
-    @Insert("insert into warehouse values (#{id},#{userWarehouse_id},#{state},0)")
+    @Insert("insert into warehouse values (#{id},#{userWarehouseId},#{state},0)")
     boolean insertWarehouse(WareHouse wareHouse);
     /**
      * com.example.mapper.Page3Mapper.updateUserWareHouse():

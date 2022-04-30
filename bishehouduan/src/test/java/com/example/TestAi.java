@@ -12,10 +12,8 @@ import javax.annotation.Resource;
  */
 @SpringBootTest
 public class TestAi {
-    @Resource
-    PublicMapper publicMapper;
     @Test
-    public void testTest(){
-        System.out.println(publicMapper.selectId("443808626@qq.com"));
+    public void test(){
+        System.out.println("abc");
     }
 }

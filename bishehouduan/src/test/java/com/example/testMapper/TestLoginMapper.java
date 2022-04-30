@@ -8,11 +8,15 @@ import javax.annotation.Resource;
 
 @SpringBootTest
 class TestLoginMapper {
-    @Resource
-    private LoginMapper login;
-    private String account="443808626@qq.com";
     @Test
-    void testLogin_selectUserInfo() {
-        System.out.println(login.selectUserLogin(account));
+    public void test(){
+        System.out.println("abc");
     }
+//    @Resource
+//    private LoginMapper login;
+//    private String account="443808626@qq.com";
+//    @Test
+//    void testLogin_selectUserInfo() {
+//        System.out.println(login.selectUserLogin(account));
+//    }
 }
