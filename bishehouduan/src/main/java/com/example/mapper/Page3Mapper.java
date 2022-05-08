@@ -93,7 +93,7 @@ public interface Page3Mapper {
      */
     @Select("select userwarehouse.id,userwarehouse.name,userwarehouse.count,userwarehouse.available,remaining,userwarehouse.userInfo_id from userwarehouse,userinfo where userinfo.id=userwarehouse.userInfo_id and account=#{account} and userwarehouse.name=#{name}")
     @Results({
-            @Result(property = "userInfoId",column = "userwarehouse.userInfo_id")
+            @Result(property = "userInfoId",column = "userInfo_id")
     })
     UserWareHouse selectWareHouseAvailable(WareHouseNameAndAccount wareHouseNameAndAccount);
     /**

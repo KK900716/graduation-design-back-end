@@ -119,7 +119,6 @@ public class Page3ServiceImpl implements Page3Service {
             return false;
         }
         UserWareHouse userWareHouse=page3Mapper.selectWareHouseAvailable(new WareHouseNameAndAccount(account,name));
-        System.out.println(userWareHouse);
         //        查看仓库容量
         if (userWareHouse.getRemaining()<=0) {
             return false;

@@ -19,11 +19,13 @@ import java.io.IOException;
 public class LoginController {
     @Resource
     private LoginServiceImpl loginService;
-    //登录逻辑
     /**
-     *
-     * @param userData 用户信息
-     * @return ResponseLogin
+     * com.example.controller.LoginController.login():
+     * 登录逻辑
+     * @author ljc
+     * @date 2022/5/6~22:06
+     * @param userData 登录用户信息
+     * @return com.example.pojo.response.ResponseLogin
      */
     @PostMapping("/login")
     public ResponseLogin login(@RequestBody UserData userData){
@@ -38,12 +40,13 @@ public class LoginController {
         }
         return responseLogin;
     }
-    //验证码请求
-
     /**
-     *
+     * com.example.controller.LoginController.checkCode():
+     * 验证码逻辑
+     * @author ljc
+     * @date 2022/5/6~22:10
      * @param uuid uuid
-     * @param response 返回图片流
+     * @param response 响应
      */
     @GetMapping("/checkcode")
     public void checkCode(String uuid, HttpServletResponse response) throws IOException {
@@ -53,11 +56,13 @@ public class LoginController {
         //TODO 便于测试
         System.out.println(checkCode);
     }
-
     /**
-     *
-     * @param token 检查token
-     * @return 返回是否正确
+     * com.example.controller.LoginController.checkToken():
+     * 检查token
+     * @author ljc
+     * @date 2022/5/6~22:11
+     * @param token token
+     * @return boolean
      */
     @GetMapping("/checkToken")
     public boolean checkToken(@RequestHeader(value = "token") String token){

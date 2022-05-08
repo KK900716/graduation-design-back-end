@@ -16,23 +16,25 @@ import javax.annotation.Resource;
 public class Page1Controller {
     @Resource
     private Page1ServiceImpl page1Service;
-
     /**
-     * 返回用户信息
+     * com.example.controller.Page1Controller.getInfo():
+     * 获取token
+     * @author ljc
+     * @date 2022/5/6~22:40
      * @param token token
-     * @return 用户信息
+     * @return com.example.pojo.response.ResponsePage1
      */
     @GetMapping("/info")
     public ResponsePage1 getInfo(@RequestHeader(value = "token") String token){
         return page1Service.getInfo(JwtUtil.preCheckJwt(token));
     }
     /**
-     * @author ljc
-     * Page1Controller.updateUserInfo()
+     * com.example.controller.Page1Controller.updateUserInfo():
      * 更新用户信息
-     * @date 2022/4/6~16:37
+     * @author ljc
+     * @date 2022/5/6~22:46
      * @param token token
-     * @param page1Update 更新的用户信息
+     * @param page1Update 返回页面1的更新信息
      * @return com.example.pojo.response.ResponsePate1Update
      */
     @PutMapping("/updateInfo")
