@@ -25,7 +25,7 @@ public class Page4Controller {
      * @param updatePassword 密码
      * @return boolean
      */
-    @PostMapping("updatePassword")
+    @PostMapping("/updatePassword")
     public boolean updatePassword(@RequestHeader String token, @RequestBody UpdatePassword updatePassword){
         return page4Service.updatePassword(JwtUtil.preCheckJwt(token),updatePassword);
     }
