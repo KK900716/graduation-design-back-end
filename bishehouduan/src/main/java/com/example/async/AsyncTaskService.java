@@ -39,7 +39,6 @@ public class AsyncTaskService {
                 printWriter.flush();
     //            接受数据
                 String line=bufferedReader.readLine();
-                System.out.println(line);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {

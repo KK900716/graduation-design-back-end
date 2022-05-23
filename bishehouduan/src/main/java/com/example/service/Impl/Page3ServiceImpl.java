@@ -153,7 +153,7 @@ public class Page3ServiceImpl implements Page3Service {
     public List<String> refresh(String account, String name) {
         List<String> list=new ArrayList<>();
 //        TODO 此处需要将basePath改成newPath
-        String path=basePath+"/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,name));
+        String path=newPath+"/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,name));
         File file=new File(path);
         String[] l = file.list();
         String path2="http://127.0.0.1:80/getImg?account="+account+"&name="+name+"&id=";
@@ -168,7 +168,8 @@ public class Page3ServiceImpl implements Page3Service {
 
     @Override
     public void getImg(String account, String id,String name, HttpServletResponse response) {
-        String path=basePath+"/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,name));
+        //        TODO 此处需要将basePath改成newPath
+        String path=newPath+"/"+publicMapper.selectId(account)+"/"+page3Mapper.selectHasWareHouse(new WareHouseNameAndAccount(account,name));
         File file=new File(path+"/"+id);
         FileInputStream fileInputStream=null;
         try {
