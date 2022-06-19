@@ -3,7 +3,8 @@
 #### 介绍
 前端Vue，后端SpringBoot，图像识别YOLOv5，数据库Redis、Mysql
 #### SQL
-```
+
+```mysql
 CREATE TABLE `userinfo` (
   `id` int NOT NULL AUTO_INCREMENT,
   `account` varchar(50) NOT NULL,
